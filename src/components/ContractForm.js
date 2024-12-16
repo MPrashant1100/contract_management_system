@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 
 export default function ContractForm({ onContractCreated }) {
   const [formData, setFormData] = useState({
@@ -7,7 +6,6 @@ export default function ContractForm({ onContractCreated }) {
     status: 'Draft',
     content: '',
   });
-  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +39,7 @@ export default function ContractForm({ onContractCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-md mb-6">
       <div>
         <label htmlFor="clientName" className="block text-sm font-medium text-gray-700">
           Client Name
@@ -88,7 +86,7 @@ export default function ContractForm({ onContractCreated }) {
       </div>
       <button
         type="submit"
-        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200"
       >
         Create Contract
       </button>

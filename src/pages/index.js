@@ -20,8 +20,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchContracts(searchFilters);
-    // Initialize socket connection
-    fetch('/api/socket');
   }, [fetchContracts, searchFilters]);
 
   const handleSearch = (filters) => {
@@ -34,26 +32,29 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Contract Management System</h1>
-      <button
-        onClick={() => setShowForm(!showForm)}
-        className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        {showForm ? 'Hide Form' : 'Add New Contract'}
-      </button>
-      {showForm && <ContractForm onContractCreated={handleContractCreated} />}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Search Contracts</h2>
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-1/4 p-4 bg-white shadow-md rounded-lg mb-4 md:mb-0 md:mr-4">
+        <h2 className="text-xl font-bold mb-4">Search Contracts</h2>
         <SearchFilter onSearch={handleSearch} />
       </div>
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Contract List</h2>
-        {isLoading ? (
-          <p>Loading contracts...</p>
-        ) : (
-          <ContractList contracts={contracts} onContractUpdated={fetchContracts} />
-        )}
+      <div className="w-full md:w-3/4">
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Contracts</h2>
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-200"
+            >
+              {showForm ? 'Hide Form' : 'Add New Contract'}
+            </button>
+          </div>
+          {showForm && <ContractForm onContractCreated={handleContractCreated} />}
+          {isLoading ? (
+            <p className="text-center">Loading contracts...</p>
+          ) : (
+            <ContractList contracts={contracts} onContractUpdated={fetchContracts} />
+          )}
+        </div>
       </div>
     </div>
   );
