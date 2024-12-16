@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function ContractForm() {
+export default function ContractForm({ onContractCreated }) {
   const [formData, setFormData] = useState({
     clientName: '',
     status: 'Draft',
@@ -28,7 +28,12 @@ export default function ContractForm() {
         body: JSON.stringify(formData),
       });
       if (res.ok) {
-        router.push('/');
+        setFormData({
+          clientName: '',
+          status: 'Draft',
+          content: '',
+        });
+        onContractCreated();
       }
     } catch (error) {
       console.error('Failed to create contract', error);

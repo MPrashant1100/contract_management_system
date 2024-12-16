@@ -17,7 +17,10 @@ export default function SearchFilter({ onSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(filters);
+    const nonEmptyFilters = Object.fromEntries(
+      Object.entries(filters).filter(([_, value]) => value !== '')
+    );
+    onSearch(nonEmptyFilters);
   };
 
   return (
