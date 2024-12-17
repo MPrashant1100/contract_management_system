@@ -47,7 +47,7 @@ export default function SearchFilter({ onSearch }) {
           id="clientName"
           value={filters.clientName}
           onChange={handleChange}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          className="mt-1 focus:ring-indigo-500 border-2 p-1 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         />
       </div>
       <div>
@@ -58,7 +58,7 @@ export default function SearchFilter({ onSearch }) {
           id="id"
           value={filters.id}
           onChange={handleChange}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          className="mt-1 focus:ring-indigo-500 border-2 p-1 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         />
       </div>
       <button
